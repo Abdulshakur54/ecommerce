@@ -35,21 +35,28 @@
                                 @csrf
                                 @if (Session::has('error_message'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Error:</strong> {{Session::get('error_message')}}
+                                        <strong>Error:</strong> {{ Session::get('error_message') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                 @endif
 
+
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
                                         placeholder="Username" name="email" id="email" required>
+                                    @error('email')
+                                        <div class="text-danger pt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg"
                                         id="exampleInputPassword1" placeholder="Password" name="password"
-                                        id="password">
+                                        id="password" required>
+                                    @error('password')
+                                        <div class="text-danger pt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit"
