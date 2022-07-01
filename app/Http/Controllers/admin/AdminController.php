@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class AdminController extends Controller
 {
@@ -48,10 +49,10 @@ class AdminController extends Controller
         if($request->isMethod('post')){
            if($this->confirmAdminPassword($request) == 'true'){ 
                 if($request->confirm_new_password == $request->new_password){
-                    Admin::where('id',Auth::guard('admin')->user()->id)->update(['password'=>Hash::make($request->password)]);
-                    // $row = Admin::find(Auth::guard('admin')->user()->id);
-                    // $row->password = Hash::make($request->new_password);
-                    // $row->update();
+                    // Admin::where('id',Auth::guard('admin')->user()->id)->update(['password'=>Hash::make($request->password)]);
+                    $row = Admin::find(Auth::guard('admin')->user()->id);
+                    $row->password = Hash::make($request->new_password);
+                    $row->update();
                     return redirect('admin/change_password')->with('success_message','Password has beeen successfully changed');
                 }else{
                     return redirect('admin/change_password')->with('error_message','New Password does not match Confirm New Password');
@@ -71,5 +72,32 @@ class AdminController extends Controller
             return 'false';
         }
         
+    }
+
+    public function updateProfile(Request $request){
+        $admRecord = Admin::find(Auth::guard('admin')->user()->id);
+        if($request->isMethod('post')){
+            $rules = [
+                'name'=>'required|max:50|min:3|regex:/^[a-z ]+$/i',
+                'mobile'=>'required|digits:11|regex:/^0[7-9][01][0-9]{8}$/',
+            ];
+            if($request->has('profile_photo')){
+                $rules['profile_photo']='image|mimes:jpeg,jpg,png,PNG,JPEG,JPG|max:2048';
+            }
+            $request->validate($rules);
+            if(!empty(Auth::guard('admin')->user()->image)){
+                unlink(Auth::guard('admin')->user()->image);
+            }
+           
+           $imageObj = $request->file('profile_photo');
+           $storedName = 'admin/images/profile_photo/'.bin2hex(random_bytes(3)).'.'.$imageObj->getExtension();
+            Image::make($imageObj)->save($storedName);
+            $admRecord->name = $request->name;
+            $admRecord->mobile = $request->mobile;
+            $admRecord->image = $storedName;
+            $admRecord->update();
+            return redirect()->back()->with('success_message','Your Profile has been updated');
+        }
+       return view('admin.update_profile');
     }
 }
