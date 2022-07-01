@@ -6,10 +6,8 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Update Password</h4>
-              <p class="card-description">
-                Change your password
-              </p>
+              <h4 class="card-title">Change Password</h4>
+
               <form class="forms-sample" method="post" action="{{url('admin/change_password')}}">
                 @csrf
                 @if (Session::has('error_message'))
