@@ -6,19 +6,41 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Settings</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/update_profile')}}">Update Profile</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/change_password')}}">Change Password</a></li>
-              </ul>
-            </div>
-          </li>
+          @switch(Auth::guard('admin')->user()->type)
+              @case('superadmin')
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <i class="icon-layout menu-icon"></i>
+                  <span class="menu-title">Settings</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/update_profile')}}">Update Profile</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/change_password')}}">Change Password</a></li>
+                  </ul>
+                </div>
+              </li>
+                  @break
+              @case('vendor')
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <i class="icon-layout menu-icon"></i>
+                  <span class="menu-title">Vendor Details</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/update_vendor_details/personal')}}">Personal Details</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/update_vendor_details/business')}}">Business Details</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/update_vendor_details/bank')}}">Bank Details</a></li>
+                  </ul>
+                </div>
+              </li>
+                  @break
+              @default
+                  
+          @endswitch
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
