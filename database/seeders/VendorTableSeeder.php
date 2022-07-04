@@ -18,7 +18,7 @@ class VendorTableSeeder extends Seeder
         Vendor::insert(
             [
                 [
-                    'id' => 3,
+                    'id' => 2,
                     'name' => 'Kamarudeen',
                     'address' => '1234-SCF',
                     'city' => 'New Delhi',

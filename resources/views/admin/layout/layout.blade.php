@@ -20,7 +20,10 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{url('admin/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
+  
   <link rel="shortcut icon" href="{{url('admin/images/favicon.png')}}" />
+  {{-- Material Icons --}}
+  <link rel="stylesheet" href="{{url('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
 </head>
 <body>
   <div class="container-scroller">

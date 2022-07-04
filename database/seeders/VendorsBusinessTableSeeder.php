@@ -17,7 +17,7 @@ class VendorsBusinessTableSeeder extends Seeder
     {
         VendorBusiness::insert(
             [[
-                'vendor_id' => 3,
+                'vendor_id' => 2,
                 'shop_name' => 'John Electronics Store',
                 'shop_address' => '1234-SCF',
                 'shop_city' => 'New Delhi',
@@ -28,7 +28,7 @@ class VendorsBusinessTableSeeder extends Seeder
                 'shop_website' => 'sitemakers.in',
                 'shop_email' => 'kamarudeen@gmail.com',
                 'address_proof' => 'Passport',
-                'address_proof_image' => 'test.jpg',
+                'address_proof_image' => '',
                 'business_license_number' => '787988789787978',
                 'gst_number' => '434894729832',
                 'pan_number' => '673892893832'

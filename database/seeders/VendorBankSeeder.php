@@ -18,7 +18,7 @@ class VendorBankSeeder extends Seeder
         VendorBankDetail::insert(
             [
                 [
-                    'vendor_id' => 3,
+                    'vendor_id' => 2,
                     'account_name' => 'Kamarudeen',
                     'bank_name' => 'ICICI',
                     'account_number' => '3489438909',

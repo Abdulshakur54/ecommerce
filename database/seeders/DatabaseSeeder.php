@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        //$this->call(AdminTableSeeder::class);
-        //$this->call(VendorBankSeeder::class);
-        //$this->call(VendorsBusinessTableSeeder::class);
-        $this->call(VendorTableSeeder::class);
+        // $this->call(AdminTableSeeder::class);
+        // $this->call(VendorBankSeeder::class);
+        // $this->call(VendorsBusinessTableSeeder::class);
+        // $this->call(VendorTableSeeder::class);
     }
     
 }

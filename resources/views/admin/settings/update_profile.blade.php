@@ -50,7 +50,10 @@
                                 <div class="form-group">
                                     <label for="profile_photo">Profile Photo</label>
                                     <input type="file" class="form-control" name="profile_photo">
+                                    @if (!empty(Auth::guard('admin')->user()->image))
                                     <a href="{{url(Auth::guard('admin')->user()->image)}}">View Profile Photo</a>
+                                    @endif
+                                  
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>

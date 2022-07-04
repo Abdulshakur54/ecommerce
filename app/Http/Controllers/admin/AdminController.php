@@ -116,8 +116,7 @@ class AdminController extends Controller
     {
         switch ($slug) {
             case 'personal':
-                $vendorDetails = Vendor::find(Auth::guard('admin')->user()->id);
-
+                $vendorDetails = Vendor::where('id',Auth::guard('admin')->user()->id)->first();
                 if ($req->isMethod('post')) {
                     $rules = [
                         'name' => 'required|max:50|min:3|regex:/^[a-z ]+$/i',
@@ -216,5 +215,24 @@ class AdminController extends Controller
                 }
                 return view('admin.settings.update_bank_details', compact('bankDetails'));
         }
+    }
+
+    public function admins($slug = null){
+        if($slug == 'all'){
+            $admins = Admin::where('type','!=','superadmin')->get();
+        }else{
+            $admins = Admin::where('type',$slug)->get();
+        }
+        $type = $slug;
+       return view('admin.admins.admins',compact('admins','type'));
+    }
+
+    public function viewVendorDetails($vendorId){
+        $vendorDetails = Vendor::where('id',$vendorId)->first();
+        $businessDetails = VendorBusiness::where('vendor_id', $vendorId)->first();
+        $bankDetails = VendorBankDetail::where('vendor_id', $vendorId)->first();
+        $profileImage = Admin::find($vendorId)->image;
+        $businessImage = VendorBusiness::where('vendor_id', $vendorId)->first()->address_proof_image;
+        return view('admin.view_vendor_details',compact('vendorDetails','businessDetails','bankDetails','profileImage','businessImage'));
     }
 }

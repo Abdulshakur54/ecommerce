@@ -88,7 +88,7 @@
                                     <label for="address_proof_image">Upload Address Proof Image</label>
                                     <input type="file" class="form-control" name="address_proof_image">
                                     @if (!empty($businessDetails['address_proof_image']))
-                                        <a href="{{ url(Auth::guard('admin')->user()->image) }}">View Address Proof
+                                        <a href="{{ url($businessDetails->address_proof_image) }}">View Address Proof
                                             Image</a>
                                     @endif
                                 </div>

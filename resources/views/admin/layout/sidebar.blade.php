@@ -21,6 +21,37 @@
                   </ul>
                 </div>
               </li>
+              {{-- Admin Management --}}
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <i class="icon-layout menu-icon"></i>
+                  <span class="menu-title">Admins Management</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/admins/admin')}}">Admins</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/admins/subadmin')}}">Sub Admins</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/admins/vendor')}}">Vendors</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/admins/all')}}">All</a></li>
+                  </ul>
+                </div>
+              </li>
+
+              {{-- User Management --}}
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <i class="icon-layout menu-icon"></i>
+                  <span class="menu-title">Users Management</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/users/admin')}}">Users</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/admins/subadmin')}}">Subscribers</a></li>
+                  </ul>
+                </div>
+              </li>
                   @break
               @case('vendor')
               <li class="nav-item">
