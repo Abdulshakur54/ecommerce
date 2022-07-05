@@ -17,7 +17,7 @@
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Image</th>
-                                            <th>Status</th>
+                                            <th>Active</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -36,16 +36,17 @@
                                                 <td>{{ $admin->email }}</td>
                                                 <td><img src="{{ asset($admin->image) }}" /></td>
                                                 <td>
-                                                    @if ($admin->status)
-                                                        <span style="color:green">Active</span>
-                                                    @else
-                                                        <span style="color:red">Inactive</span>
-                                                    @endif
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input vendors"
+                                                            {{($admin->status)?'checked':''}} id="inp-{{$admin->id}}" adm_id="{{$admin->id}}">
+                                                        <label class="custom-control-label" for="inp-{{$admin->id}}"></label>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     @if (strtolower($type) == 'vendor')
-                                                        <a href="{{ url('admin/view_vendor_details/'.$admin->id) }}"><span
-                                                                class="mdi mdi-format-list-bulleted" style="font-size: 25px"></span></a>
+                                                        <a href="{{ url('admin/view_vendor_details/' . $admin->id) }}"><span
+                                                                class="mdi mdi-format-list-bulleted"
+                                                                style="font-size: 25px"></span></a>
                                                     @endif
                                                 </td>
                                             </tr>

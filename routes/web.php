@@ -32,9 +32,11 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
         Route::post('confirm_admin_password', 'AdminController@confirmAdminPassword');
         Route::get('admins/{slug}','AdminController@admins');
         Route::get('view_vendor_details/{vendorId?}','AdminController@viewVendorDetails');
+        Route::post('update_admin_status','AdminController@updateAdminStatus');
     });
     Route::match(['get','post'],'login', 'AdminController@login');
     Route::match(['get','post'],'update_vendor_details/{slug}', 'AdminController@updateVendorDetails');
+    
 });
 
 Route::get('/phpinfo', function() {

@@ -235,4 +235,18 @@ class AdminController extends Controller
         $businessImage = VendorBusiness::where('vendor_id', $vendorId)->first()->address_proof_image;
         return view('admin.view_vendor_details',compact('vendorDetails','businessDetails','bankDetails','profileImage','businessImage'));
     }
+
+
+    public function updateAdminStatus(Request $request){
+        $adm = Admin::where('vendor_id',$request->adm_id)->first();
+        $adm->status = $request->status;
+        $adm->update();
+       
+        if($adm->type == 'vendor'){
+            $vendor = Vendor::where('id',$request->adm_id)->first();
+            $vendor->status = $request->status;
+            $vendor->update();
+        }
+        return response()->json(['statuscode' => 200]);
+    }
 }
